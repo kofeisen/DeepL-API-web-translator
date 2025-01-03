@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8800:5000"
+    volumes:
+      - .:/app
+      - /app/.venv  # 排除虚拟环境目录
+    environment:
+      - FLASK_APP=deepl_web.py
+      - FLASK_ENV=production
+    restart: unless-stopped  # 自动重启
+    network_mode: bridge
